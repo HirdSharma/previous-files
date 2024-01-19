@@ -1,0 +1,39 @@
+import java.util.*;
+public class sum2pointer{
+    public static boolean sumpair2(ArrayList<Integer> list,int target){
+        int n=list.size();
+        int bp=-1;
+        for(int i=0;i<n;i++){
+            if(list.get(i)>=list.get(i+1)){
+              bp=i;
+              break;
+            }
+        }
+        int lp=bp+1;
+        int rp=bp;
+        while(rp!=lp){
+            if(list.get(rp)+list.get(lp)==target){
+                System.out.println(list.get(rp)+","+list.get(lp));
+                return true;
+            }
+            if(list.get(rp)+list.get(lp)<target){
+                lp=(lp+1)%n;
+            }
+            if(list.get(rp)+list.get(lp)>target){
+                rp=(n+rp-1)%n;
+            }
+        }
+        return false;
+    }
+    public static void main(String args[]){
+        ArrayList<Integer> list=new ArrayList<>();
+        list.add(11);
+        list.add(15);
+        list.add(6);
+        list.add(8);
+        list.add(9);
+        list.add(10);
+        int target=23;
+        System.out.println(sumpair2(list, target));
+    }
+}
